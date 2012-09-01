@@ -1,0 +1,17 @@
+{
+  "name": "Platform Guy JS - DracSoft.com",
+  "version": "1.0",
+  "icons": { "16": "baddie.png",
+             "32": "baddie.png",
+             "48": "baddie.png",
+          "128": "baddie.png" },
+  "background_page": "background.html",
+  "options_page": "options.html",
+  "browser_action": {
+    "default_icon": "baddie.png",
+    "default_title": "The Platform Guy - DracSoft.com"
+  },
+  "permissions": [
+		"tabs", "http://*/*"
+	]
+}

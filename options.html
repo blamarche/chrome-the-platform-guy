@@ -1,0 +1,108 @@
+<html>
+<script>
+/*
+	Platform Guy JS 
+	Copyright 2010 DracSoft.com
+	Started 8/1/2010 @ 18:00 GMT
+	Finished 8/5/2010
+
+	License: GPL v3
+	THIS MUST BE DISTRIBUTED NON-MINIFIED AND NON-OBFUSCATED	
+*/
+
+// Saves options to localStorage.
+function save_options() {    
+  var select = document.getElementById("difficulty");
+  var difficulty = select.children[select.selectedIndex].value;
+  var hidesitee = document.getElementById("hidesite");
+  var solidplatformse = document.getElementById("solidplatforms");
+  
+  localStorage["hidesite"] = hidesitee.checked;
+  localStorage["solidplatforms"] = solidplatformse.checked;  
+  localStorage["difficulty"] = difficulty;
+
+  // Update status to let user know options were saved.
+  var status = document.getElementById("status");
+  status.innerHTML = "Options Saved.";
+  setTimeout(function() {
+    status.innerHTML = "";
+  }, 3000);
+}
+
+// Restores select box state to saved value from localStorage.
+function restore_options() {
+  var difficulty = localStorage["difficulty"];
+  var hidesite = localStorage["hidesite"];
+  var solidplatforms = localStorage["solidplatforms"];
+  
+  if (!difficulty) {
+    return;
+  }
+  var select = document.getElementById("difficulty");
+  for (var i = 0; i < select.children.length; i++) {
+    var child = select.children[i];
+    if (child.value == difficulty) {
+      child.selected = "true";
+      break;
+    }
+  }
+  
+  var hidesitee = document.getElementById("hidesite");
+  var solidplatformse = document.getElementById("solidplatforms");
+  
+  hidesitee.checked = (hidesite=="true");
+  solidplatformse.checked = (solidplatforms=="true");
+}
+</script>
+<body onload="restore_options()">
+<div style="margin: 0 auto; width: 100%;width: 400px;">
+<div style=" border: solid 1px #ccc; margin: 0 auto; padding: 10px 10px;">
+	<h4>The Platform Guy JS - Copyright 2010 <a href="http://www.dracsoft.com/tech">DracSoft.com</a></h4>
+	<p>Controls:<br>
+		I - Jump<br>
+		J/L - Left/Right</p>
+	<p>Goal: <br>Reach the blue exit door without being killed by the red box thingies.</p>
+	<p>Method: <br>Jump up the website platforms and jump on enemies to kill them.</p>
+	<hr>
+	<table width="100%">
+	<tr>
+	<td style="border-bottom: solid 1px #ddd; background-color: #eee;">Difficulty: </td>
+	<td style="border-bottom: solid 1px #ddd; background-color: #eee;">
+	<select id="difficulty">
+	 <option value="1">Easy</option>
+	 <option value="2">Medium</option>
+	 <option value="3">Hard</option>
+	 <option value="4">Insane</option>
+	</select>
+	</td>
+	</tr>
+	<tr>
+	<td style="border-bottom: solid 1px #ddd; background-color: #eee;">
+	Hide Site Contents During Gameplay?
+	</td>
+	<td style="border-bottom: solid 1px #ddd; background-color: #eee;">
+	<input type="checkbox" id="hidesite" />
+	</td>
+	</tr>
+	<tr>
+	<td style="border-bottom: solid 1px #ddd; background-color: #eee;">
+	Use Filled Platforms?
+	</td>
+	<td style="border-bottom: solid 1px #ddd; background-color: #eee;">
+	<input type="checkbox" id="solidplatforms" />
+	</td>
+	</tr>
+	<tr>
+	<td>	
+	<button onclick="save_options()">Save Options</button>
+	</td>
+	<td>
+	<div style="color: #090; font-weight: 800;" id="status"></div>
+	</td>
+	</tr>
+	</table>
+	
+</div>
+</div>
+</body>
+</html>

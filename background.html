@@ -1,0 +1,31 @@
+<html>
+<script>
+/*
+	Platform Guy JS 
+	Copyright 2010 DracSoft.com
+	Started 8/1/2010 @ 18:00 GMT
+	Finished 8/5/2010
+
+	License: GPL v3
+	THIS MUST BE DISTRIBUTED NON-MINIFIED AND NON-OBFUSCATED	
+*/
+
+function init()
+{
+	var difficulty = localStorage["difficulty"];
+	var hidesite = localStorage["hidesite"];
+	var solidplatforms = localStorage["solidplatforms"];
+
+	var setoptions = "";
+	setoptions += "pfguy_o_hidesite = "+hidesite+";";
+	setoptions += "pfguy_o_fillplatforms = "+solidplatforms+";";
+	setoptions += "pfguy_o_difficulty = "+difficulty+";";
+	
+	chrome.tabs.executeScript(null, {code: setoptions+"pfguy_Init();"});
+}
+
+chrome.browserAction.onClicked.addListener(function(tab) {	
+	chrome.tabs.executeScript(null, {file:"theplatformguy.js"}, init);  
+});
+</script>
+</html>
